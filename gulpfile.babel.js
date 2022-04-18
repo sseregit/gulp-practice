@@ -43,7 +43,7 @@ const pug = () => {
 };
 
 const clean = () => {
-  return del(["build"]);
+  return del(["build", ".publish"]);
 };
 
 const webserver = () => {
@@ -96,4 +96,4 @@ const postDev = gulp.parallel(webserver, watch);
 
 export const build = gulp.series(prepare, assets);
 export const dev = gulp.series(build, postDev);
-export const deploy = gulp.series(build, ghdeploy);
+export const deploy = gulp.series(build, ghdeploy, clean);
